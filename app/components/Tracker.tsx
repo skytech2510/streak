@@ -8,12 +8,12 @@ export interface DayEntry {
     state: Status;
 }
 interface TrackerPropsType {
-    days: DayEntry[]
+    days: DayEntry[] | null
 }
 export const Tracker: React.FC<TrackerPropsType> = ({ days }) => {
     return <div className=" flex flex-row gap-0">
         {days && days.map((day, index) => (
-            <Increment key={index} status={day.state} date={day.date} activities={day.activities}></Increment>
+            <Increment key={index} status={day.state} date={new Date(day.date)} activities={day.activities}></Increment>
         ))}
     </div>
 }

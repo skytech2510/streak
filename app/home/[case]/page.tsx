@@ -1,19 +1,30 @@
 "use client"
 import { useParams } from "next/navigation";
 import { DayEntry, Tracker } from "@/app/components/Tracker"
-import React from "react";
-const days: DayEntry[] = [
-    { date: new Date("2021-10-4"), activities: 0, state: 'INCOMPLETE' },
-    { date: new Date(), activities: 0, state: 'INCOMPLETE' },
-    { date: new Date(), activities: 0, state: 'SAVED' },
-    { date: new Date(), activities: 0, state: 'INCOMPLETE' },
-    { date: new Date("2021-10-9"), activities: 0, state: 'INCOMPLETE' },
-    { date: new Date(), activities: 0, state: 'AT_RISK' },
-    { date: new Date(), activities: 0, state: 'INCOMPLETE' },
-]
+import React, { useEffect, useState } from "react";
+
 export default function Page() {
-    const a = useParams();
-    console.log(a)
+    const params = useParams();
+    const [days, setDays] = useState<DayEntry[] | null>(null);
+    const [isLoading, setIsLoading] = useState(true);
+    useEffect(() => {
+        const fetchData = async () => {
+            const res = await fetch(`${window.origin}/api/streak/${params.case}`, {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                }
+            })
+            const { days } = await res.json();
+            setDays(days);
+            console.log(days)
+            setIsLoading(false);
+        }
+        fetchData();
+    }, [])
+    if (isLoading) return <>
+        Loading...
+    </>
     return <main className="w-full">
         <div className=" flex flex-col">
             <div className=" m-auto flex flex-col mt-[310px]">
