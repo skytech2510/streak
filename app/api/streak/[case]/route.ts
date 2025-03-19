@@ -89,8 +89,8 @@ export async function GET(
                 return defaultDays;
         }
     })();
-    const activitiesToday = days.filter(day => day.date === new Date());
-    console.log(activitiesToday);
+
+
     const temp = getDaysFromOldestToWeek(days, new Date());
     let deposite = 0;
     temp.forEach((d, index) => {
@@ -133,7 +133,18 @@ export async function GET(
         }
     })
     const result = getDaysOfCurrentWeek(temp);
+    let total = 7;
+    if (result.filter((day) => day.state === 'INCOMPLETE')) {
+        total = total - result.filter((day) => day.state === 'INCOMPLETE').length;
+    }
+    const activitiesToday = result.filter(day => {
+        const today = new Date().toISOString().slice(0, 10);
+        const dayDate = day.date.toISOString().slice(0, 10);
+        return today === dayDate;
+    })[0].date;
     return NextResponse.json({
-        days: result
+        days: result,
+        activitiesToday: activitiesToday,
+        total: total
     }, { status: 200 });
 }  
