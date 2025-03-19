@@ -1,4 +1,5 @@
 "use client"
+import { Increment } from "@/app/components/Increment";
 import { useParams } from "next/navigation";
 import React from "react";
 export default function Page() {
@@ -11,8 +12,7 @@ export default function Page() {
                     Your streak is 6 days
                 </div>
                 <div className="w-fit m-auto">
-                    <div className=" border-[2px] border-[#E6E6E6] p-6 rounded-[12px]">
-
+                    <div className=" border-[2px] border-[#E6E6E6] p-6 rounded-[12px]"><Increment date={new Date()} status={"COMPLETED"} activities={10} />
                     </div>
                 </div>
             </div>
