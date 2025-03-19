@@ -2,7 +2,8 @@
 import { useParams } from "next/navigation";
 import { DayEntry, Tracker } from "@/app/components/Tracker"
 import React, { useEffect, useState } from "react";
-
+import Image from "next/image";
+import DB from '@/public/assets/BG.png';
 export default function Page() {
     const params = useParams();
     const [days, setDays] = useState<DayEntry[] | null>(null);
@@ -27,7 +28,8 @@ export default function Page() {
         Loading...
     </>
     return <main className="w-full">
-        <div className=" flex flex-col">
+
+        <div className=" absolute w-full flex flex-col z-50">
             <div className=" m-auto flex flex-col mt-[310px] gap-10">
                 <div className=" text-[#212121] text-[56px] font-medium">
                     Your streak is {total} days
@@ -39,5 +41,6 @@ export default function Page() {
                 </div>
             </div>
         </div>
+        <Image src={DB} width={1440} height={1025} alt="" className=" absolute w-full h-full top-0 z-10"></Image>
     </main>
 }
