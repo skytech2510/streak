@@ -28,8 +28,8 @@ export default function Page() {
     </>
     return <main className="w-full">
         <div className=" flex flex-col">
-            <div className=" m-auto flex flex-col mt-[310px]">
-                <div className=" text-[#212121] text-[56px]">
+            <div className=" m-auto flex flex-col mt-[310px] gap-10">
+                <div className=" text-[#212121] text-[56px] font-medium">
                     Your streak is {total} days
                 </div>
                 <div className="w-fit m-auto">
