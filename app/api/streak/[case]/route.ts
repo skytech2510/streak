@@ -89,6 +89,8 @@ export async function GET(
                 return defaultDays;
         }
     })();
+    const activitiesToday = days.filter(day => day.date === new Date());
+    console.log(activitiesToday);
     const temp = getDaysFromOldestToWeek(days, new Date());
     let deposite = 0;
     temp.forEach((d, index) => {
