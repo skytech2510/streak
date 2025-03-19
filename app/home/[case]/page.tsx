@@ -1,15 +1,14 @@
 "use client"
-import { Increment } from "@/app/components/Increment";
 import { useParams } from "next/navigation";
 import { DayEntry, Tracker } from "@/app/components/Tracker"
 import React from "react";
 const days: DayEntry[] = [
+    { date: new Date("2021-10-4"), activities: 0, state: 'INCOMPLETE' },
     { date: new Date(), activities: 0, state: 'INCOMPLETE' },
+    { date: new Date(), activities: 0, state: 'SAVED' },
     { date: new Date(), activities: 0, state: 'INCOMPLETE' },
-    { date: new Date(), activities: 0, state: 'INCOMPLETE' },
-    { date: new Date(), activities: 0, state: 'INCOMPLETE' },
-    { date: new Date(), activities: 0, state: 'INCOMPLETE' },
-    { date: new Date(), activities: 0, state: 'INCOMPLETE' },
+    { date: new Date("2021-10-9"), activities: 0, state: 'INCOMPLETE' },
+    { date: new Date(), activities: 0, state: 'AT_RISK' },
     { date: new Date(), activities: 0, state: 'INCOMPLETE' },
 ]
 export default function Page() {
