@@ -9,7 +9,7 @@ import COMPLETED from "@/public/assets/completed.svg" // If different, replace w
 
 type Status = "INCOMPLETE" | "COMPLETED" | "SAVED" | "AT_RISK";
 
-const STATUS_IMAGES: Record<Status, any> = {
+const STATUS_IMAGES: Record<Status, React.ComponentType<React.SVGProps<SVGSVGElement>>> = {
     "AT_RISK": AT_RISK,
     "INCOMPLETE": INCOMPLETED,
     "SAVED": SAVED,
