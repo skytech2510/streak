@@ -27,6 +27,7 @@ export const Increment: React.FC<IncrementPropsType> = ({
     date,
     activities
 }) => {
+    console.log(activities);
     return (
         <div className='flex flex-col gap-2 items-center px-[14.29px] pb-2 pt-1 shadow-[0_1.5px_0px_0px_#E6E6E6]'>
             <Image

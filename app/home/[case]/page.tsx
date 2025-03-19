@@ -17,7 +17,6 @@ export default function Page() {
             })
             const { days } = await res.json();
             setDays(days);
-            console.log(days)
             setIsLoading(false);
         }
         fetchData();

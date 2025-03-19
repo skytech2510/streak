@@ -44,10 +44,22 @@ function getDaysOfCurrentWeek(allDates: DayEntry[]): DayEntry[] {
     const endOfWeek = new Date(currentDate);
     endOfWeek.setDate(currentDate.getDate() + (6 - currentDate.getDay()));
     endOfWeek.setHours(23, 59, 59, 999);
-    return allDates.filter(dayEntry => {
-        return dayEntry.date >= startOfWeek && dayEntry.date <= endOfWeek;
-    }).sort((a, b) => a.date.getTime() - b.date.getTime());
+    const weekDays: DayEntry[] = [];
+
+    for (let d = new Date(startOfWeek); d <= endOfWeek; d.setDate(d.getDate() + 1)) {
+        const existingDay = allDates.find(entry =>
+            entry.date.toDateString() === d.toDateString()
+        );
+        weekDays.push(existingDay || {
+            date: new Date(d),
+            activities: 1,
+            state: 'COMPLETED'
+        });
+    }
+
+    return weekDays.sort((a, b) => a.date.getTime() - b.date.getTime());
 }
+
 export async function GET(
     req: NextRequest,
     { params }: { params: { case: string } }
